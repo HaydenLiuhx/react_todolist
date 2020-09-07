@@ -27,10 +27,17 @@ export default class TodoList extends Component {
         //     list: [...this.state.list, this.state.inputValue],
         //     inputValue: ''
         // }))
+        // this.setState((prevState) => ({
+        //     list: [...prevState.list, prevState.inputValue],
+        //     inputValue: ''
+        // }),() => console.log(this.list.querySelectorAll('div'))
+        // )
         this.setState((prevState) => ({
             list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        }))
+        })
+        )
+        
     }
     handleListDelete = (index) => {
         // const list = [...this.state.list]
@@ -47,7 +54,7 @@ export default class TodoList extends Component {
     getTodoItem = () => {
         return(
             this.state.list.map((item, index) => 
-                <TodoItem key ={'item'+index} content={{item,index}} deleteMethod={this.handleListDelete}/>
+                <TodoItem key = {'item'+index} item={item} index={index} deleteMethod={this.handleListDelete}/>
             )
         )
     }
@@ -56,7 +63,8 @@ export default class TodoList extends Component {
         return (
             <Fragment>
                 <label forhtml='insertArea'>请输入内容</label>
-                <Input 
+                <Input
+                    id='insertArea' 
                     value={inputValue}
                     placeholder={inputValue}
                     onChange={this.handleInputChange}
@@ -65,7 +73,7 @@ export default class TodoList extends Component {
                     style={{background:'grey'}}
                     onClick={this.handleBtnClick}
                 >提交</Button>
-                <List title="todo-list">
+                <List title="todo-list" ref={(list) => {this.list = list}}>
                     {this.getTodoItem()}
                 </List>
             </Fragment>
