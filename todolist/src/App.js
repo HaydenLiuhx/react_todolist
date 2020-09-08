@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PureList from './purelist'
+import PureList from './purelist/purelist'
 import NewTodo from './newtodo'
 import { Route, Link, BrowserRouter } from "react-router-dom"
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
